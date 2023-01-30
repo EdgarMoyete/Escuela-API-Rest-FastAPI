@@ -40,8 +40,8 @@ class Alumno(BaseModel):
 class Calificacion(BaseModel):
     id_calificacion: Optional[int]
     calificacion: float
-    id_alumno: str
-    id_materia: str
+    id_alumno: int
+    id_materia: int
 
     class Config:
         orm_mode = True

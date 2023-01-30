@@ -35,16 +35,16 @@ def read_carrera(id_carrera: int, db: Session = Depends(get_db)) -> Carrera:
 
 @carre.put("/{id_carrera}", response_model=Carrera)
 def update_carrera(id_carrera:int, c:Carrera, db: Session = Depends(get_db)) -> Carrera:
-   db_carrera = db.query(Carreras).filter(Carreras.id_carrera == id_carrera).first()
-   db_carrera.carrera=c.carrera
-   db.commit()
-   return db_carrera
+    db_carrera = db.query(Carreras).filter(Carreras.id_carrera == id_carrera).first()
+    db_carrera.carrera=c.carrera
+    db.commit()
+    return db_carrera
 
 @carre.delete("/{id_carrera}")
 def delete_carrera(id_carrera:int, db: Session = Depends(get_db)):
-   try:
-      db.query(Carreras).filter(Carreras.id_carrera == id_carrera).delete()
-      db.commit()
-   except Exception as e:
-      raise Exception(e)
-   return {"Delete success": id_carrera}
+    try:
+        db.query(Carreras).filter(Carreras.id_carrera == id_carrera).delete()
+        db.commit()
+    except Exception as e:
+        raise Exception(e)
+    return {"Delete success": id_carrera}

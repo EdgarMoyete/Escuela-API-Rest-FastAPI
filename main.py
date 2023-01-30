@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 
 from routes.carreras import carre
-# from routes.especialidades import espec
+from routes.especialidades import espec
+from routes.materias import mater
+from routes.alumnos import alumn
+from routes.calificaciones import calif
 
 app = FastAPI(
     title = "API Rest de Escuela",
@@ -14,9 +17,9 @@ app = FastAPI(
         }
     ],
     contact={
-        "name": "Edgar Moises Hernandez-Gonzalez",
-        "url": "https://github.com/EdgarMoyete",
-        "email": "edgar.hernandez@crediclub.com"
+        "name": "Edgar Moises Hernandez-Gonzalez"
+        # "url": "https://github.com/EdgarMoyete",
+        # "email": "edgar.hernandez@crediclub.com"
     },
     license_info= {
         "name": "MIT License",
@@ -28,4 +31,7 @@ async def index():
     return {"Bienvenido a mi API Rest de Escuela"}
 
 app.include_router(carre)
-# app.include_router(espec)
+app.include_router(espec)
+app.include_router(mater)
+app.include_router(alumn)
+app.include_router(calif)
