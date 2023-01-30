@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from routes.carreras import carre
+from routes.especialidades import espec
 
 app = FastAPI(
     # title = "API de Usuarios",
@@ -19,3 +20,4 @@ async def index():
     return {"Bienvenido a mi API Rest de Escuela"}
 
 app.include_router(carre)
+app.include_router(espec)
