@@ -6,7 +6,7 @@ from config import DATABASE_CONNECTION_URI
 
 engine = create_engine(DATABASE_CONNECTION_URI)
 session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-base = declarative_base()
+Base = declarative_base()
 
 def get_db():
     db = session_local()

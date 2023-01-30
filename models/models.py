@@ -1,30 +1,30 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Float
 from sqlalchemy.orm import relationship
 
-from .db import base
+from .db import Base
 
-class carrera(base):
+class Carreras(Base):
     __tablename__ = "carreras"
     id_carrera = Column(Integer, primary_key=True, index=True)
     carrera = Column(String)
 
-class especialidad(base):
+class Especialidades(Base):
     __tablename__ = "especialidades"
     id_especialidad = Column(Integer, primary_key=True, index=True)
     especialidad = Column(String)
     id_carrera = Column(Integer, ForeignKey("carreras.id_carrera"))
     
-    carrera = relationship("carrera") # back_populates=
+    carrera = relationship("Carreras") # back_populates=
 
-class materia(base):
+class Materias(Base):
     __tablename__ = "materias"
     id_materia = Column(Integer, primary_key=True, index=True)
     materia = Column(String)
     id_carrera = Column(Integer, ForeignKey("carreras.id_carrera"))
     
-    carrera = relationship("carrera") # back_populates=
+    carrera = relationship("Carreras") # back_populates=
 
-class alumno(base):
+class Alumnos(Base):
     __tablename__ = "alumnos"
     id_alumno = Column(Integer, primary_key=True, index=True)
     apellido_paterno = Column(String)
@@ -35,15 +35,15 @@ class alumno(base):
     id_carrera = Column(Integer, ForeignKey("carreras.id_carrera"))
     id_especialidad = Column(Integer, ForeignKey("especialidades.id_especialidad"))
     
-    carrera = relationship("carrera") # back_populates=
-    especialidad = relationship("especialidad") # back_populates=
+    carrera = relationship("Carreras") # back_populates=
+    especialidad = relationship("Especialidades") # back_populates=
 
-class calificacion(base):
+class Calificaciones(Base):
     __tablename__ = "calificaciones"
     id_calificacion = Column(Integer, primary_key=True, index=True)
     calificacion = Column(Float)
     id_alumno = Column(Integer, ForeignKey("alumnos.id_alumno"))
     id_materia = Column(Integer, ForeignKey("materias.id_materia"))
     
-    alumno = relationship("alumno") # back_populates=
-    materia = relationship("materia") # back_populates=
+    alumno = relationship("Alumnos") # back_populates=
+    materia = relationship("Materias") # back_populates=
